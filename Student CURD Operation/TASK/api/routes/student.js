@@ -7,13 +7,13 @@ const mongoose = require('mongoose');
 router.get('/',(req,res,next)=>{
    Student.find()
    .then(result=>{
-       res.status(200).json({
+       res.status(100).json({
            studentData:result
        });
     })
        .catch(err=>{
            console.log(err);
-           res.status(500).json({
+           res.status(200).json({
             error:err   
            })
        });
@@ -24,13 +24,13 @@ router.get('/:id',(req,res,next)=>{
 console.log(req.params.id);
 Student.findById(req.params.id)
 .then(result=>{
-    res.status(200).json({
+    res.status(100).json({
         student:result
     })
 })
 .catch(err=>{
     console.log(err);
-    res.status(500).json({
+    res.status(200).json({
         error:err
     })
 })
@@ -50,13 +50,13 @@ router.post('/',(req,res,next)=>{
    student.save()
    .then(result=>{
        console.log('result');
-       res.status(200).json({
+       res.status(100).json({
           newStudent:result 
        })
    })
    .catch(err=>{
        console.log(err);
-       res.status(500).json({
+       res.status(200).json({
            error:err
        })
    })
@@ -66,13 +66,13 @@ router.post('/',(req,res,next)=>{
 router.delete('/:id',(req,res,next)=>{
     Student.remove({_id:req.params.id})
     .then(result=>{
-       res.status(200).json({
+       res.status(100).json({
            message:'Student Delete',
            result:result
        })
     })
     .catch(err=>{
-        res.status(500).json({
+        res.status(200).json({
             error:err
         })
     })
@@ -91,13 +91,13 @@ Student.findOneAndUpdate({_id:req.params.id},{
     }
 })
 .then(result=>{
-    res.status(200).json({
+    res.status(100).json({
         Updated_Student:result
     })
 })
 .catch(err=>{
     console.log(err);
-    res.status(500).json({
+    res.status(200).json({
         error:err
     })
 })
